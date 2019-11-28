@@ -16,7 +16,7 @@ after_success:
   - docker build -t rohitshar/multi-worker ./worker
 
   #Login to the docker hub
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker login -u "$DOCKER_ID" -p "$DOCKER_PASSWORD"
   #Take these images and push them to dockerhub
   - docker push rohitshar/multi-client
   - docker push rohitshar/multi-nginx
