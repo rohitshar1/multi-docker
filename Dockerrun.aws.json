@@ -1,0 +1,37 @@
+{
+    "AWSEBDockerVersion" : 2,
+    "containerDefinitions": [
+        {
+            "name": "client",
+            "image": "rohitshar/multi-client",
+            "hostname": "client",
+            "essential": false
+        },
+        {
+            "name": "server",
+            "image": "rohitshar/multi-server",
+            "hostname": "api",
+            "essential": false
+        },
+        {
+            "name": "worker",
+            "image": "rohitshar/multi-worker",
+            "hostname": "worker",
+            "essential": false
+        },
+        {
+            "name": "nginx",
+            "image": "rohitshar/multi-nginx",
+            "hostname": "ngninx",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort": 80        
+                }
+            ],
+            "links": ["client", "server"]
+        }
+
+    ]
+}
